@@ -1,6 +1,9 @@
 import time
 import sys
 
+# Matthew Witzig
+# ADVENTURE! The Meh Adventure game
+
 # Variable that decides whether the game will run again or not.
 repeat = True
 
