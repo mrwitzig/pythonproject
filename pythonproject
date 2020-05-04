@@ -1,4 +1,224 @@
+import time
 import sys
 
-f = open("adventure.txt", "r")
+# Variable that decides whether the game will run again or not.
+repeat = True
 
+# Variables that store how many wins and loses you get.
+wins = 0
+loses = 0
+
+# Displays a message when you win
+def win():
+    print('{:*^80}'.format(''))
+    print('*{:^78}*'.format(''))
+    print('*{:^78}*'.format("You're a winner!"))
+    print('*{:^78}*'.format(''))
+    print('{:*^80}'.format(''))
+
+# Displays a message when you lose
+def lose():
+    print('{:*^80}'.format(''))
+    print('*{:^78}*'.format(''))
+    print('*{:^78}*'.format('Wah wah waaah...'))
+    print('*{:^78}*'.format(''))
+    print('{:*^80}'.format(''))
+
+# Return T or F for Y or N.
+def cont(yn):
+    if yn == 'y':
+        return True
+    elif yn == 'n':
+        return False
+
+
+# Main program
+
+while repeat == True:
+    print("IT'S DANGEROUS TO GO ALONE! TAKE THIS.")
+    time.sleep(1)
+    # Decide between warrior and wizard
+    #while choice == (not ('warrior' or 'wizard')):
+    choice = raw_input('Are ye a warrior or a wizard? ').lower()
+    if choice == ('warrior'):
+        job = 'warrior'
+        # Choose your enemy!
+        print("Avast! You're a bold warrior, what beast do ye seek?")
+        time.sleep(1)
+        choice = raw_input('Dragon or Witch? ').lower()
+        if choice == 'dragon':
+            print("You've reached Mount Fire!")
+            time.sleep(1)
+            choice = raw_input('Left or Right? ').lower()
+
+            if choice == 'left':
+                print('{}'.format('You come upon a small white house with no lights inside.'))
+                time.sleep(2)
+                print('{}'.format("It's pitch black."))
+                time.sleep(2)
+                print('{}'.format('You are likely to be eaten by a grue.'))
+                time.sleep(2)
+                print('{}'.format('What is a grue?'))
+                time.sleep(2)
+                print('{}'.format('A grue is a sinister, lurking presence in the dark places of the earth.'))
+                time.sleep(2)
+                print('{}'.format('While you were figuring out what a grue is one sneaks up behind you and eats you.'))
+                time.sleep(2)
+                lose()
+                loses += 1
+            elif choice == 'right':
+                print('Oh no, the dragon!')
+                time.sleep(1)
+                if job == 'warrior':
+                    print('You stab the dragon! That was easy. It was only a little dragon.')
+                    time.sleep(1)
+                    win()
+                    wins += 1
+                elif job != 'warrior':
+                    print('The dragon is rather large and steps on you. Squiiiiiiish.')
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                else:
+                    print('Pick a valid raw_input!')
+        # Decide between swamp or forest.
+        elif choice == 'witch':
+            print("You've reached Dark Moors!")
+            time.sleep(1)
+            choice = raw_input('Descend into the swamp or explore the forest? ').lower()
+
+            if choice == 'swamp':
+                print("You stumble onto the witch!")
+                time.sleep(1)
+                if job == 'warrior':
+                    print("The witch turns you into a frog! It's not easy being green, y'know.")
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                elif job == 'wizard':
+                    print("You cast magic missile at the witch. Intercontinental Magic Missile, that is! It's super effective!")
+                    time.sleep(1)
+                    win()
+                    wins += 1
+                else:
+                    print('Pick a valid raw_input!')
+
+            elif choice == 'forest':
+                print('The forest is big and spooky.')
+                time.sleep(1)
+                print('You find a strange octagonal free-standing structure with ornamental ivy and flowers.')
+                time.sleep(1)
+                choice = raw_input('Go in or leave? ').lower()
+
+                if choice == 'go in':
+                    print('The witch calls the police on you for trespassing and adventuring without a permit. Oops! ')
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                elif choice == 'leave':
+                    print("It's too late. You've awoken the gazebo. It catches you and eats you.")
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                else:
+                    print('Pick a valid raw_input!')
+            else:
+                    print('Pick a valid raw_input!')
+        else:
+                    print('Pick a valid raw_input!')
+
+    elif choice == 'wizard':
+        job = 'wizard'
+        print("Hail! You are a mighty wizard! Where shall ye journey first? ")
+        time.sleep(1)
+        choice = raw_input('The mountain or the moors? ').lower()
+
+        if choice == 'mountain':
+            print("You've reached Mount Fire!")
+            time.sleep(1)
+            choice = raw_input('Left or Right? ').lower()
+
+            if choice == 'left':
+                print('{}'.format('You come upon a small white house with no lights inside.'))
+                time.sleep(2)
+                print('{}'.format("It's pitch black."))
+                time.sleep(2)
+                print('{}'.format('You are likely to be eaten by a grue.'))
+                time.sleep(2)
+                print('{}'.format('What is a grue?'))
+                time.sleep(2)
+                print('{}'.format('A grue is a sinister, lurking presence in the dark places of the earth.'))
+                time.sleep(2)
+                print('{}'.format('While you were figuring out what a grue is one sneaks up behind you and eats you.'))
+                time.sleep(2)
+                lose()
+                loses += 1
+            elif choice == 'right':
+                print('Oh no, the dragon!')
+                time.sleep(1)
+                if job == 'warrior':
+                    print('You stab the dragon! That was easy. It was only a little dragon.')
+                    time.sleep(1)
+                    win()
+                    wins += 1
+                elif job != 'warrior':
+                    print('The dragon is rather large and steps on you. Squiiiiiiish.')
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                else:
+                    print('Pick a valid raw_input!')
+        # Decide between swamp or forest.
+        elif choice == 'moors':
+            print("You've reached Dark Moors!")
+            time.sleep(1)
+            choice = raw_input('Descend into the swamp or explore the forest? ').lower()
+
+            if choice == 'swamp':
+                print("You stumble onto the witch!")
+                time.sleep(1)
+                if job == 'warrior':
+                    print("The witch turns you into a frog! It's not easy being green, y'know.")
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                elif job == 'wizard':
+                    print("You cast magic missile at the witch. Intercontinental Magic Missile, that is! It's super effective!")
+                    time.sleep(1)
+                    win()
+                    wins += 1
+                else:
+                    print('Pick a valid raw_input!')
+
+            elif choice == 'forest':
+                print('The forest is big and spooky.')
+                time.sleep(1)
+                print('You find a strange octagonal free-standing structure with ornamental ivy and flowers.')
+                time.sleep(1)
+                choice = raw_input('Go in or leave? ').lower()
+
+                if choice == 'go in':
+                    print('The witch calls the police on you for trespassing and adventuring without a permit. Oops! ')
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                elif choice == 'leave':
+                    print("It's too late. You've awoken the gazebo. It catches you and eats you.")
+                    time.sleep(1)
+                    lose()
+                    loses += 1
+                else:
+                    print('Pick a valid raw_input!')
+            else:
+                    print('Pick a valid raw_input!')
+        else:
+                    print('Pick a valid raw_input!')
+
+    else:
+        print('Only a warrior or wizard can face the peril!')
+    time.sleep(3)
+    print('You have won {} times.'.format(wins))
+    print('You have lost {} times.'.format(loses))
+    time.sleep(2)
+    decision = raw_input('Do you want to play again? y/n \n')
+    repeat = cont(decision)
